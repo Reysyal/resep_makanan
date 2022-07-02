@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:resep_makanan/models/random_recipes_model.dart';
 import 'package:resep_makanan/models/recipe_model.dart';
 import 'package:resep_makanan/services/recipe_service.dart';
 
 class RecipeProvider extends ChangeNotifier {
   final RecipeService _resepService = RecipeService();
-  late List<Results> _recipeModel;
-  bool _loading = true;
+  late List<Results> _recipeList;
+  late RecipeModel? _recipeDetail;
+  late bool _loading = true;
 
   bool get loading => _loading;
-  List<Results> get recipeModel => _recipeModel;
+  List<Results> get recipeList => _recipeList;
+  RecipeModel? get recipeDetail => _recipeDetail;
 
   RecipeProvider() {
-    _fetchData();
+    _fetchRecipes();
     notifyListeners();
   }
 
-  _fetchData() async {
-    _recipeModel = await _resepService.getRecipes();
+  _fetchRecipes() async {
+    _recipeList = await _resepService.getRecipes();
+    toggleLoading();
+    notifyListeners();
+  }
+
+  fetchRecipe(int idRecipe) async {
+    _recipeDetail = await _resepService.getRecipe(idRecipe);
     toggleLoading();
     notifyListeners();
   }
@@ -26,7 +35,7 @@ class RecipeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  getRecipeCount() {
-    return _recipeModel.length;
+  getRecipesCount() {
+    return _recipeList.length;
   }
 }

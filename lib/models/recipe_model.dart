@@ -1,47 +1,24 @@
 class RecipeModel {
-  List<Results>? results;
-
-  RecipeModel({this.results});
-
-  RecipeModel.fromJson(Map<String, dynamic> json) {
-    if (json['results'] != null) {
-      results = <Results>[];
-      json['results'].forEach((v) {
-        results!.add(Results.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (results != null) {
-      data['results'] = results!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Results {
   int? id;
   String? title;
   String? image;
-  String? imageType;
+  String? summary;
 
-  Results({this.id, this.title, this.image, this.imageType});
+  RecipeModel({this.id, this.title, this.image, this.summary});
 
-  Results.fromJson(Map<String, dynamic> json) {
+  RecipeModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     image = json['image'];
-    imageType = json['imageType'];
+    summary = json['summary'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['title'] = title;
     data['image'] = image;
-    data['imageType'] = imageType;
+    data['summary'] = summary;
     return data;
   }
 }
