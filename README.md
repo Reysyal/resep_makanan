@@ -4,7 +4,7 @@ A new Flutter project for my uni assignment.
 
 NIM : 191011400688
 
-NAMA : Reyke Syalramadhan
+Nama : Reyke Syalramadhan Valentino Briliant
 
 ## Getting Started
 
