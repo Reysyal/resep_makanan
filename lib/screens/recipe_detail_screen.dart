@@ -22,7 +22,7 @@ class RecipeDetailScreen extends StatelessWidget {
                   ? const Center(
                       child: Text('Error When Getting Data'),
                     )
-                  : Scrollbar(
+                  : SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 32.0,
